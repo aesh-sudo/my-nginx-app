@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build docker image
-        run: docker build -t my-nginx:1.0 .
+        run: docker build -t my-nginx:1.0 -f ~/~/my-nginx-app/dockerfile
