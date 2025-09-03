@@ -7,5 +7,5 @@ jobs:
   ci-nginx:
     runs-on: ubuntu-latest
     steps:
-      name: Build docker image
-      run: docker build -t my-nginx:1.0
+      - name: Build docker image
+        run: docker build -t my-nginx:1.0
