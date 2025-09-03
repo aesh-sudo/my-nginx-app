@@ -1,0 +1,11 @@
+name: ci-cd nginx
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ci-nginx:
+    runs-on: ubuntu-latest
+    steps:
+      name: Build docker image
+      run: docker build -t my-nginx:1.0
