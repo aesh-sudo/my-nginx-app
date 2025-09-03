@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Build docker image
-        run: docker build -t my-nginx:1.0 ~/my-nginx-app/dockerfile
+        run: docker build -t my-nginx:1.0 .
