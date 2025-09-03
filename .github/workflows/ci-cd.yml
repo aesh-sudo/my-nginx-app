@@ -12,3 +12,6 @@ jobs:
 
       - name: Build docker image
         run: docker build -t my-nginx:1.0 .
+
+      - name: Run container
+        run: docker run -d --name my-nginx-container -p 8080:80 my-nginx:1.0
