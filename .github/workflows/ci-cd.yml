@@ -1,7 +1,6 @@
 name: ci-cd nginx
-on:
-  push:
-    branches: [main]
+on: [push, workflow_dispatch]
+  branches: [main]
 
 jobs:
   ci-nginx:
