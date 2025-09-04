@@ -26,6 +26,15 @@ jobs:
             exit 1
           fi
 
+      - name: Save image to artifact
+        run: docker save -o my-nginx-image.tar my-nginx:1.0
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-nginx-image
+          path: my-nginx-image.tar
+
   cd-nginx:
     needs: ci-nginx
     runs-on: ubuntu-latest
@@ -38,6 +47,17 @@ jobs:
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
+
+      - name: Download image artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: my-nginx-image
+
+      - name: Load image
+        run: docker load -i my-nginx-image.tar
+
+      - name: Retag image
+        run: docker tag my-nginx:1.0 ${{ env.DOCKERHUB_USERNAME}}/my-nginx:1.0
 
       - name: Push to Docker Hub
         run: docker push ${{ env.DOCKERHUB_USERNAME}}/my-nginx:1.0
